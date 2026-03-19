@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuv ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Pacifico',cursive;
+background:#ffc0cb;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+#screen{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+padding:20px;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+h1{font-size:40px;}
+h2{font-size:28px;}
+p{font-size:22px;max-width:90%;}
+
+button{
+padding:15px 30px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff4da6;
+color:white;
+margin:10px;
+}
+
+img{
+width:80%;
+max-width:300px;
+border-radius:20px;
+margin:10px;
+}
+
+/* typing */
+.typing{
+border-right:2px solid white;
+white-space:nowrap;
+overflow:hidden;
+animation:typing 4s steps(40,end);
+}
+
+@keyframes typing{
+from{width:0}
+to{width:100%}
+}
+
+/* final */
+.final{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(45deg,#ff4da6,#ff99cc);
+}
+
+.big{
+font-size:36px;
+text-shadow:0 0 20px white;
+}
+
+.play{
+padding:15px 30px;
+font-size:20px;
+border-radius:30px;
+border:none;
+background:white;
+color:#ff4da6;
+margin-top:20px;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+/* hearts */
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="bg.mp3">
+</audio>
+
+<div id="screen">
+<img src="mickey.png" style="width:150px; margin-bottom:20px;">
+
+<h1 style="font-size:42px; color:#ff1493;">Hey Yuv 💖</h1>
+
+<p style="font-size:22px; color:white; margin:10px;">
+Ready for something special...? 😏
+</p>
+
+<button onclick="start()" style="
+padding:15px 30px;
+font-size:20px;
+background:white;
+color:#ff4da6;
+border:none;
+border-radius:30px;
+margin-top:20px;
+">
+Start 💖
+</button>
+
+</div>
+
+<script>
+
+function start(){
+screen.innerHTML = `
+<h2 class="typing">Choose the right door 🚪</h2>
+<button onclick="wrong()">Door 1</button>
+<button onclick="correct()">Door 2</button>
+<button onclick="wrong()">Door 3</button>
+`;
+}
+
+function wrong(){
+alert("Galat 😜 try again");
+}
+
+function correct(){
+screen.innerHTML = `
+<h2 class="typing">Our Memories ❤️</h2>
+<img src="pic1.jpg">
+<img src="pic2.jpg">
+<img src="pic3.jpg">
+<button onclick="quiz()">Next</button>
+`;
+}
+
+function quiz(){
+screen.innerHTML = `
+<h2>Riya tumhe sabse zyada kis naam se bulati hai? 😉</h2>
+<input id="ans">
+<br>
+<button onclick="check()">Submit</button>
+`;
+}
+
+function check(){
+let v=document.getElementById("ans").value.toLowerCase();
+
+if(v==="mera pyara bacha"){
+message();
+}else{
+alert("Wrong 😏");
+}
+}
+
+function message(){
+screen.innerHTML = `
+<p class="typing">
+Yuv… I know you feel your birthday is bad luck…<br><br>
+But for me… it’s the luckiest day ❤️<br><br>
+Because you came into this world 😌
+</p>
+<br>
+<button onclick="loading()">Continue</button>
+`;
+}
+
+function loading(){
+screen.innerHTML = `
+<h2 class="typing">Loading your surprise... 💖</h2>
+`;
+setTimeout(final,3000);
+}
+
+function final(){
+document.body.innerHTML = `
+<div class="final">
+
+<h1 class="big">
+HAPPY BIRTHDAY MY LOVE ❤️🌚💋<br>
+I LOVE YOU SO MUCH, ALWAYS 🫣🫶🏻💕
+</h1>
+
+<p>I made this for you… please listen ❤️</p>
+
+<button class="play" onclick="play()">▶ Play Voice</button>
+
+<audio id="voice">
+<source src="yuv.mp3">
+</audio>
+
+</div>
+`;
+
+for(let i=0;i<25;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(h);
+}
+}
+
+function play(){
+document.getElementById("voice").play();
+}
+
+</script>
+
+</body>
+</html>
